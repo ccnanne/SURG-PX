@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>SAP พังงา</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="แนวทางการใช้ยาปฏิชีวนะป้องกันการติดเชื้อในการผ่าตัด โรงพยาบาลพังงา พ.ศ. 2569 โดยคณะกรรมการ AMR">
+
+<style>:root{color-scheme:light;} body{margin:0;} img{max-width:100%;} [hidden]{display:none!important;}</style>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;600;700&family=Sarabun:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --ink:#1b2a2e;
+    --ink-soft:#4a5c60;
+    --paper:#f6f4ee;
+    --surface:#ffffff;
+    --surface-2:#eef1ea;
+    --line:#d9d3c2;
+    --teal:#0e5652;
+    --teal-deep:#0a3e3c;
+    --teal-tint:#e2ede9;
+    --amber:#b5652c;
+    --amber-tint:#f7e9de;
+    --red:#a1392a;
+    --red-tint:#f6e2de;
+    --chip-bg:#e7e2d2;
+    --shadow: 0 1px 2px rgba(20,30,28,.06), 0 6px 20px -8px rgba(20,30,28,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --ink:#eef1ec;
+      --ink-soft:#a9b6b2;
+      --paper:#12181a;
+      --surface:#1a2224;
+      --surface-2:#20292b;
+      --line:#2c3739;
+      --teal:#5fb3aa;
+      --teal-deep:#8ed0c7;
+      --teal-tint:#182826;
+      --amber:#e0a469;
+      --amber-tint:#2a2119;
+      --red:#e08d7c;
+      --red-tint:#2c1e1b;
+      --chip-bg:#26302f;
+      --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 26px -10px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --ink:#eef1ec;
+    --ink-soft:#a9b6b2;
+    --paper:#12181a;
+    --surface:#1a2224;
+    --surface-2:#20292b;
+    --line:#2c3739;
+    --teal:#5fb3aa;
+    --teal-deep:#8ed0c7;
+    --teal-tint:#182826;
+    --amber:#e0a469;
+    --amber-tint:#2a2119;
+    --red:#e08d7c;
+    --red-tint:#2c1e1b;
+    --chip-bg:#26302f;
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 10px 26px -10px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Sarabun','IBM Plex Mono',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    padding-inline:0;
+  }
+  h1,h2,h3,.disp{ font-family:'Noto Serif Thai','Sarabun',serif; text-wrap:balance; }
+  .mono{ font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; }
+
+  a{ color:var(--teal-deep); }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:40;
+    background:var(--surface); border-bottom:1px solid var(--line);
+    padding:14px 18px calc(14px);
+  }
+  .topbar-inner{ max-width:1040px; margin:0 auto; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .brand{ display:flex; align-items:baseline; gap:10px; flex:1 1 auto; min-width:220px; }
+  .brand .mark{
+    width:34px; height:34px; border-radius:9px; background:var(--teal); color:#fbf9f2;
+    display:flex; align-items:center; justify-content:center; font-family:'Noto Serif Thai',serif;
+    font-weight:700; font-size:15px; flex:none;
+  }
+  .brand h1{ font-size:18px; margin:0; font-weight:700; color:var(--ink); }
+  .brand .sub{ font-size:12.5px; color:var(--ink-soft); }
+
+  nav.tabs{
+    display:flex; gap:4px; overflow-x:auto; max-width:1040px; margin:12px auto 0; padding-bottom:2px;
+    scrollbar-width:none;
+  }
+  nav.tabs::-webkit-scrollbar{ display:none; }
+  nav.tabs button{
+    flex:none; border:none; background:transparent; color:var(--ink-soft);
+    font-family:'Sarabun',sans-serif; font-size:14.5px; font-weight:600;
+    padding:8px 13px; border-radius:8px; cursor:pointer; white-space:nowrap;
+    transition:background .15s, color .15s;
+  }
+  nav.tabs button:hover{ background:var(--surface-2); color:var(--ink); }
+  nav.tabs button[aria-selected="true"]{ background:var(--teal); color:#fbf9f2; }
+  nav.tabs button:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible{
+    outline:2px solid var(--teal-deep); outline-offset:2px;
+  }
+
+  main{ max-width:1040px; margin:0 auto; padding:26px 18px 64px; }
+  section.pane{ display:none; }
+  section.pane.active{ display:block; animation:fade .25s ease; }
+  @keyframes fade{ from{opacity:0; transform:translateY(3px);} to{opacity:1; transform:none;} }
+
+  .lede{ color:var(--ink-soft); font-size:15px; max-width:64ch; margin:2px 0 22px; }
+  h2.page-title{ font-size:25px; margin:0 0 4px; color:var(--teal-deep); }
+  h3.block-title{ font-size:17px; margin:26px 0 10px; color:var(--ink); font-weight:700; }
+  h3.block-title .eyebrow{ display:block; font-family:'Sarabun'; font-weight:700; font-size:12px; letter-spacing:.08em; color:var(--teal); margin-bottom:3px; }
+
+  p{ margin:0 0 12px; }
+  ul.plain{ margin:0 0 14px; padding-inline-start:20px; }
+  ul.plain li{ margin-bottom:8px; }
+
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:18px 20px; box-shadow:var(--shadow);
+  }
+  .card + .card{ margin-top:14px; }
+
+  .cite{ font-size:12.5px; color:var(--ink-soft); }
+
+  /* principle cards */
+  .principles{ display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; margin:16px 0 8px; }
+  .principle{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px;
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .principle .num{
+    font-family:'IBM Plex Mono'; font-size:12px; font-weight:600; color:var(--teal);
+    letter-spacing:.06em;
+  }
+  .principle h4{ margin:0; font-size:15.5px; font-family:'Noto Serif Thai'; color:var(--ink); }
+  .principle p{ font-size:13.5px; color:var(--ink-soft); margin:0; }
+
+  /* search + lookup */
+  .search-wrap{ position:relative; margin-bottom:14px; }
+  .search-wrap input{
+    width:100%; font-family:'Sarabun'; font-size:16px; padding:12px 14px 12px 40px;
+    border-radius:11px; border:1px solid var(--line); background:var(--surface); color:var(--ink);
+  }
+  .search-wrap svg{ position:absolute; left:13px; top:50%; transform:translateY(-50%); color:var(--ink-soft); }
+  .result-count{ font-size:12.5px; color:var(--ink-soft); margin:-6px 0 12px; }
+
+  .proc-list{ display:flex; flex-direction:column; gap:10px; }
+  .proc{
+    border:1px solid var(--line); border-radius:13px; background:var(--surface); overflow:hidden;
+  }
+  .proc summary{
+    list-style:none; cursor:pointer; padding:13px 16px; display:flex; align-items:center; gap:12px;
+  }
+  .proc summary::-webkit-details-marker{ display:none; }
+  .proc summary .name{ font-weight:600; font-size:15px; flex:1 1 auto; }
+  .proc summary .chev{ color:var(--ink-soft); transition:transform .18s; flex:none; }
+  .proc[open] summary .chev{ transform:rotate(90deg); }
+  .proc .body{ padding:0 16px 16px; border-top:1px solid var(--line); margin-top:2px; padding-top:12px; }
+  .kv{ display:grid; grid-template-columns:auto 1fr; gap:6px 12px; font-size:14px; margin-bottom:4px;}
+  .kv dt{ color:var(--ink-soft); font-size:12.5px; padding-top:2px; white-space:nowrap;}
+  .kv dd{ margin:0; }
+  .tag{
+    display:inline-flex; align-items:center; font-size:11.5px; font-weight:700; letter-spacing:.03em;
+    padding:3px 9px; border-radius:999px; background:var(--chip-bg); color:var(--ink-soft);
+  }
+
+  /* generic table */
+  .twrap{ overflow-x:auto; border:1px solid var(--line); border-radius:13px; background:var(--surface); }
+  table{ border-collapse:collapse; width:100%; min-width:560px; font-size:14px; }
+  thead th{
+    background:var(--teal); color:#fbf9f2; text-align:left; font-weight:700; padding:11px 14px;
+    font-size:13px; position:sticky; top:0;
+  }
+  tbody td{ padding:11px 14px; border-top:1px solid var(--line); vertical-align:top; }
+  tbody tr:nth-child(even){ background:var(--surface-2); }
+  td.drug{ font-weight:600; white-space:nowrap; }
+  td .mono-note{ font-family:'IBM Plex Mono'; font-size:12.5px; color:var(--ink-soft); }
+
+  .callout{
+    display:flex; gap:11px; border-radius:12px; padding:13px 15px; font-size:13.5px; margin:14px 0;
+    border:1px solid transparent;
+  }
+  .callout.amber{ background:var(--amber-tint); border-color:color-mix(in srgb, var(--amber) 35%, transparent); color:var(--ink); }
+  .callout.red{ background:var(--red-tint); border-color:color-mix(in srgb, var(--red) 35%, transparent); color:var(--ink); }
+  .callout svg{ flex:none; margin-top:1px; }
+  .callout b{ display:block; margin-bottom:2px; }
+
+  ol.steps{ margin:0; padding-inline-start:22px; display:flex; flex-direction:column; gap:10px; }
+  ol.steps li{ padding-left:2px; }
+  ol.steps b{ color:var(--teal-deep); }
+
+  .bundle-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:10px; margin-top:14px; }
+  .bundle-item{
+    background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:13px 14px;
+    font-size:13.5px; display:flex; gap:9px; align-items:flex-start;
+  }
+  .bundle-item .n{ font-family:'IBM Plex Mono'; font-weight:700; color:var(--teal); font-size:12.5px; flex:none; }
+
+  .refs{ display:flex; flex-direction:column; gap:12px; }
+  .ref{ font-size:14px; padding-left:26px; text-indent:-26px; }
+  .ref .yr{ color:var(--teal-deep); font-weight:600; }
+
+  footer.pagefoot{
+    max-width:1040px; margin:8px auto 0; padding:18px; color:var(--ink-soft); font-size:12px;
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:560px){
+    h2.page-title{ font-size:21px; }
+    .kv{ grid-template-columns:1fr; }
+    .kv dt{ padding-top:6px; }
+  }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="mark">รพ</div>
+      <div>
+        <h1>SAP พังงา</h1>
+        <div class="sub">แนวทางยาปฏิชีวนะป้องกันการติดเชื้อผ่าตัด · คณะกรรมการ AMR 2569</div>
+      </div>
+    </div>
+  </div>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="หมวดเนื้อหา"></nav>
+</div>
+
+<main id="main"></main>
+
+<footer class="pagefoot">
+  โรงพยาบาลพังงา · จัดทำโดยคณะกรรมการป้องกันและควบคุมการดื้อยาต้านจุลชีพ (AMR) · ทบทวนภายใน 3 ปี หรือเมื่อมีหลักฐานใหม่
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ======================= DATA ======================= */
+
+  var PROCEDURES = [
+    { group:"เต้านมและเนื้อเยื่ออ่อน", name:"เต้านม (Breast)", drug:"Cefazolin", alt:"Clindamycin หรือ Vancomycin (หากสงสัย MRSA)", redose:"4 ชั่วโมง" },
+    { group:"เต้านมและเนื้อเยื่ออ่อน", name:"แผลไฟไหม้ น้ำร้อนลวก (Burn)", drug:"Cefazolin", alt:"Clindamycin หรือ Vancomycin (หากสงสัย MRSA)", redose:"4 ชั่วโมง" },
+    { group:"หัวใจและหลอดเลือด", name:"หัวใจ (Cardiac)", drug:"Cefazolin", alt:"Cefuroxime, Clindamycin, Vancomycin (หากสงสัย MRSA)", redose:"4 ชั่วโมง" },
+    { group:"หัวใจและหลอดเลือด", name:"หลอดเลือด (Vascular)", drug:"Cefazolin", alt:"Clindamycin หรือ Vancomycin (หากสงสัย MRSA)", redose:"4 ชั่วโมง" },
+    { group:"ศีรษะ คอ และขากรรไกร", name:"ศีรษะและคอ (Head & Neck) — สะอาดใส่วัสดุเทียม/สะอาดปนเปื้อน", drug:"Cefazolin หรือ Cefuroxime + Metronidazole, Ampicillin-sulbactam, Amoxicillin-clavulanate", alt:"Clindamycin", redose:"4 ชั่วโมง (Cefazolin) / 2 ชั่วโมง (Ampicillin-sulbactam)" },
+    { group:"ศีรษะ คอ และขากรรไกร", name:"ขากรรไกร (Maxillofacial)", drug:"Cefazolin", alt:"Ampicillin-sulbactam, Amoxicillin-clavulanate, Clindamycin", redose:"4 ชั่วโมง" },
+    { group:"ศัลยกรรมประสาท", name:"ศัลยกรรมประสาท (Neurosurgery)", drug:"Cefazolin", alt:"Clindamycin หรือ Vancomycin (หากสงสัย MRSA)", redose:"4 ชั่วโมง" },
+    { group:"ตับ ทางเดินน้ำดี และตับอ่อน", name:"ตับ ทางเดินน้ำดี ตับอ่อน (Hepatobiliary & Pancreas)", drug:"Cefazolin, Cefoxitin", alt:"Ampicillin-sulbactam, Amoxicillin-clavulanate, Ciprofloxacin ± Metronidazole", redose:"4 ชั่วโมง (Cefazolin) / 2 ชั่วโมง (Cefoxitin)" },
+    { group:"ทางเดินอาหาร", name:"ไส้เลื่อน (Hernia)", drug:"Cefazolin", alt:"Clindamycin หรือ Vancomycin (หากสงสัย MRSA)", redose:"4 ชั่วโมง" },
+    { group:"ทางเดินอาหาร", name:"ทางเดินอาหารส่วนบน (หลอดอาหาร กระเพาะ ลำไส้เล็กส่วนต้น)", drug:"Cefazolin, Ampicillin-sulbactam, Amoxicillin-clavulanate", alt:"Clindamycin + Aminoglycoside หรือ Fluoroquinolone", redose:"4 ชั่วโมง" },
+    { group:"ทางเดินอาหาร", name:"ลำไส้เล็ก (Jejunum & Ileum)", drug:"Cefazolin", alt:"Clindamycin + Aminoglycoside/Fluoroquinolone, Ampicillin-sulbactam, Amoxicillin-clavulanate", redose:"4 ชั่วโมง" },
+    { group:"ทางเดินอาหาร", name:"ลำไส้เล็กอุดตัน (Obstructed small bowel)", drug:"Cefazolin หรือ Cefuroxime + Metronidazole, Cefoxitin", alt:"Ampicillin-sulbactam, Amoxicillin-clavulanate, Metronidazole + Aminoglycoside/Fluoroquinolone", redose:"4 ชั่วโมง / 2 ชั่วโมง (Cefoxitin)" },
+    { group:"ทางเดินอาหาร", name:"ลำไส้ใหญ่ ทวารหนัก (Colon, Rectum & Anus)", drug:"Cefazolin หรือ Cefuroxime + Metronidazole, Cefoxitin, Ampicillin-sulbactam, Amoxicillin-clavulanate", alt:"Metronidazole หรือ Clindamycin + Aminoglycoside/Fluoroquinolone", redose:"4 ชั่วโมง / 2 ชั่วโมง (Cefoxitin)" },
+    { group:"สูติ-นรีเวช", name:"สูติ-นรีเวช (Obstetrics & Gynecology)", drug:"Cefazolin", alt:"Cefoxitin, Ampicillin-sulbactam, Amoxicillin-clavulanate, Metronidazole หรือ Clindamycin + Aminoglycoside/Fluoroquinolone", redose:"4 ชั่วโมง" },
+    { group:"ออร์โธปิดิกส์และทรวงอก", name:"ออร์โธปิดิกส์ (Orthopedic)", drug:"Cefazolin", alt:"Clindamycin หรือ Vancomycin (หากสงสัย MRSA)", redose:"4 ชั่วโมง" },
+    { group:"ออร์โธปิดิกส์และทรวงอก", name:"ทรวงอก (Thoracic)", drug:"Cefazolin", alt:"Ampicillin-sulbactam, Amoxicillin-clavulanate, Clindamycin, Vancomycin (หากสงสัย MRSA)", redose:"4 ชั่วโมง" },
+    { group:"ระบบทางเดินปัสสาวะ", name:"ทางเดินปัสสาวะ — ไม่เข้าสู่ทางเดินปัสสาวะ", drug:"Cefazolin", alt:"Levofloxacin หรือ Ciprofloxacin (หากเชื้อไว)", redose:"4 ชั่วโมง" },
+    { group:"ระบบทางเดินปัสสาวะ", name:"ทางเดินปัสสาวะ — เข้าสู่ทางเดินปัสสาวะ", drug:"Cefazolin + Aminoglycoside, Ampicillin-sulbactam, Amoxicillin-clavulanate", alt:"พิจารณาตามผลความไวของเชื้อ กรณีดื้อยากลุ่ม 3rd-generation cephalosporin", redose:"4 ชั่วโมง" }
+  ];
+
+  var DOSING = [
+    { drug:"Cefazolin", dose:"2 g IV (น้ำหนัก >120 kg ให้ 3 g) · เด็ก 30 mg/kg", redose:"4 ชั่วโมง" },
+    { drug:"Cefuroxime", dose:"1.5 g IV · เด็ก 50 mg/kg", redose:"4 ชั่วโมง" },
+    { drug:"Cefoxitin", dose:"2 g IV · เด็ก 40 mg/kg", redose:"2 ชั่วโมง" },
+    { drug:"Clindamycin", dose:"600–900 mg IV · เด็ก 10 mg/kg", redose:"6 ชั่วโมง" },
+    { drug:"Metronidazole", dose:"500 mg IV (infuse นาน 30 นาที)", redose:"12 ชั่วโมง" },
+    { drug:"Gentamicin", dose:"5 mg/kg IV ครั้งเดียว (CrCl <20: 2 mg/kg) · เด็ก 2.5 mg/kg", redose:"ไม่ต้องให้ซ้ำ" },
+    { drug:"Vancomycin", dose:"15 mg/kg (สูงสุด 2 g) IV · infuse ≤10 mg/min · เริ่มก่อนผ่าตัด 60–120 นาที", redose:"12 ชั่วโมง" },
+    { drug:"Ampicillin-sulbactam", dose:"3 g IV (amp 2 g / sulbactam 1 g) · เด็ก 50 mg/kg", redose:"2 ชั่วโมง" },
+    { drug:"Ciprofloxacin", dose:"400 mg IV (infuse 60 นาทีก่อนลงมีด)", redose:"8 ชั่วโมง" }
+  ];
+
+  var ALLERGY = [
+    { proc:"หัตถการทั่วไปส่วนใหญ่", alt:"Vancomycin 15 mg/kg (สูงสุด 2 g) IV — infuse ≤10 mg/min" },
+    { proc:"ผ่าตัดหัวใจหรือหลอดเลือด", alt:"Vancomycin 15 mg/kg (สูงสุด 2 g) IV + Gentamicin 5 mg/kg (สูงสุด 480 mg) IV" },
+    { proc:"ผ่าตัดทางเดินอาหารส่วนบนหรือส่วนล่าง", alt:"Vancomycin 15 mg/kg (สูงสุด 2 g) IV + Gentamicin 5 mg/kg (สูงสุด 480 mg) IV + Metronidazole 12.5 mg/kg (สูงสุด 500 mg) IV" },
+    { proc:"หู คอ จมูก ขากรรไกร หรือทันตกรรม", alt:"Clindamycin 15 mg/kg (สูงสุด 600 mg) IV" }
+  ];
+
+  var PRINCIPLES = [
+    { n:"01", t:"Specific procedures only", d:"ไม่จำเป็นต้องให้ในผ่าตัดสะอาดที่ไม่ใส่วัสดุเทียม เช่น ผิวหนัง/เนื้อเยื่ออ่อนสะอาด ไส้เลื่อนไม่ใช้ตาข่าย ส่องกล้องวินิจฉัย เว้นแต่มีความเสี่ยงเพิ่มเติม" },
+    { n:"02", t:"Suitable antibiotic", d:"Cefazolin เป็นอันดับแรกสำหรับหัตถการส่วนใหญ่ เพิ่ม Metronidazole เมื่อเสี่ยงเปิดลำไส้ เพิ่ม Vancomycin เมื่อสงสัย MRSA และ Gentamicin ในหัตถการทางเดินปัสสาวะที่ซับซ้อน" },
+    { n:"03", t:"Start at optimal time", d:"เริ่มยาภายใน 60 นาทีก่อนลงมีด ยกเว้น Vancomycin, Ciprofloxacin, Levofloxacin, Fluconazole ที่อนุโลมถึง 120 นาที เนื่องจากต้อง infuse ช้า" },
+    { n:"04", t:"ปรับยาเมื่อแพ้เพนิซิลลิน", d:"แพ้ชนิด IgE-mediated ยังให้ Cefazolin ได้ (cross-reactivity ต่ำ) ส่วนแพ้ชนิดรุนแรง เช่น DRESS, SJS/TEN ให้เลี่ยง Cefazolin และใช้ยาทดแทนตามตาราง" },
+    { n:"05", t:"Single dose", d:"ขนาดมาตรฐานครั้งเดียวเพียงพอสำหรับหัตถการส่วนใหญ่ พิจารณาให้ซ้ำเมื่อผ่าตัดนานเกิน 2 เท่าของครึ่งชีวิตยา หรือเสียเลือด >1,500 มล." },
+    { n:"06", t:"Stop", d:"ส่วนใหญ่ไม่ต้องให้ต่อหลังผ่าตัด แม้มีท่อระบายคาอยู่ กรณีจำเป็น เช่น ผ่าตัดหัวใจ ให้ต่อได้ไม่เกิน 24 ชั่วโมง" }
+  ];
+
+  var BUNDLE = [
+    "งดสูบบุหรี่อย่างน้อย 2 สัปดาห์ก่อนผ่าตัด",
+    "ให้ยาปฏิชีวนะแบบคำนวณตามน้ำหนักตัว",
+    "กำจัดขนด้วยเครื่องตัดขนเท่าที่จำเป็น ก่อนผ่าตัดไม่นาน",
+    "เตรียมผิวหนังด้วยน้ำยาฆ่าเชื้อผสมแอลกอฮอล์",
+    "ใช้ wound protector ในการผ่าตัดช่องท้อง",
+    "ใช้ไหมเคลือบสารต้านจุลชีพในกลุ่มเสี่ยงสูง",
+    "คุมน้ำตาลในเลือดระหว่าง/หลังผ่าตัดไม่เกิน 200 mg/dL",
+    "รักษาอุณหภูมิร่างกายให้ปกติตลอดการผ่าตัด",
+    "รักษา SpO₂ ≥92% (ดีกว่าคือ ≥95%) ตลอดและหลังผ่าตัด",
+    "เปลี่ยนถุงมือและเครื่องมือที่ปนเปื้อนก่อนปิดแผล"
+  ];
+
+  var REFERENCES = [
+    { yr:"2026", t:"Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust. (2026). Antimicrobial prophylaxis for surgical and non-surgical procedures. NHS Doncaster and Bassetlaw Teaching Hospitals." },
+    { yr:"2020", t:"Lohsiriwat, V., Chinswangwatanakul, V., Lohsiriwat, D., Rongrungruang, Y., Malathum, K., Ratanachai, P., Butsripoom, B., Asdornwised, U., &amp; Boontham, P. (2020). Guidelines for the prevention of surgical site infection: The Surgical Infection Society of Thailand recommendations (executive summary). <i>Journal of the Medical Association of Thailand, 103</i>(1), 99–105." },
+    { yr:"2025", t:"Stanford Health Care, Antimicrobial Safety and Sustainability Program. (2025). <i>SHC surgical antimicrobial prophylaxis guidelines</i> (Revised July 2, 2025). Stanford Health Care." },
+    { yr:"2026", t:"The Royal Children's Hospital Melbourne. (2026). <i>Surgical antibiotic prophylaxis guideline: The six S's</i> (Updated January 2026). The Royal Children's Hospital Melbourne." }
+  ];
+
+  /* ======================= RENDER HELPERS ======================= */
+  function el(tag, cls, html){
+    var e = document.createElement(tag);
+    if(cls) e.className = cls;
+    if(html !== undefined) e.innerHTML = html;
+    return e;
+  }
+  function esc(s){
+    return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+
+  var TABS = [
+    { id:"overview", label:"ภาพรวม" },
+    { id:"principles", label:"6 หลักการ" },
+    { id:"lookup", label:"ค้นหายาตามหัตถการ" },
+    { id:"allergy", label:"แพ้เพนิซิลลิน" },
+    { id:"dosing", label:"ขนาดยา & ให้ซ้ำ" },
+    { id:"postop", label:"หลังผ่าตัด & SSI Bundle" },
+    { id:"refs", label:"เอกสารอ้างอิง" }
+  ];
+
+  /* ======================= PANE BUILDERS ======================= */
+
+  function buildOverview(){
+    var s = el("section", "pane");
+    s.id = "pane-overview";
+    s.innerHTML =
+      '<h2 class="page-title">แนวทางการใช้ยาปฏิชีวนะป้องกันการติดเชื้อในการผ่าตัด</h2>' +
+      '<p class="lede">Surgical Antibiotic Prophylaxis Guideline · โรงพยาบาลพังงา จัดทำโดยคณะกรรมการป้องกันและควบคุมการดื้อยาต้านจุลชีพ (AMR) พ.ศ. 2569</p>' +
+      '<div class="card">' +
+        '<h3 class="block-title" style="margin-top:0"><span class="eyebrow">หลักการและเหตุผล</span>ทำไมต้องมีแนวทางนี้</h3>' +
+        '<p>การติดเชื้อที่ตำแหน่งผ่าตัด (Surgical Site Infection: SSI) พบได้มากถึงราว 1 ใน 6 ของผู้ป่วยที่เข้ารับการผ่าตัด ส่งผลให้นอนโรงพยาบาลนานขึ้น ค่าใช้จ่ายสูงขึ้น และคุณภาพชีวิตลดลง (Lohsiriwat et al., 2020) การให้ยาปฏิชีวนะป้องกันอย่างสมเหตุสมผลจึงเป็นส่วนเสริมของเทคนิคการผ่าตัดที่ดี มิใช่สิ่งทดแทนเทคนิคปลอดเชื้อที่เหมาะสม (Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust, 2026)</p>' +
+        '<p style="margin-bottom:0">แม้ยาเพียงครั้งเดียวก็อาจก่อให้เกิดการติดเชื้อ <i>Clostridioides difficile</i> และเชื้อดื้อยาได้ จึงควรให้เฉพาะเมื่อมีหลักฐานสนับสนุนชัดเจนเท่านั้น แนวทางฉบับนี้ปรับปรุงจากแนวทางสากลให้เหมาะกับรูปแบบเชื้อดื้อยาและทรัพยากรของโรงพยาบาลพังงา</p>' +
+      '</div>' +
+      '<h3 class="block-title"><span class="eyebrow">วัตถุประสงค์</span>เป้าหมายของแนวทาง</h3>' +
+      '<ul class="plain">' +
+        '<li>กำหนดชนิด ขนาด เวลาการให้ และระยะเวลาให้ยาปฏิชีวนะป้องกันที่เหมาะสมตามหัตถการ</li>' +
+        '<li>ลดอุบัติการณ์การติดเชื้อที่ตำแหน่งผ่าตัด (SSI)</li>' +
+        '<li>ลดการใช้ยาที่ไม่เหมาะสม ลดความเสี่ยงเชื้อดื้อยาและผลข้างเคียง เช่น C. difficile และไตวายเฉียบพลัน</li>' +
+        '<li>เป็นมาตรฐานเดียวกันสำหรับบุคลากรทางการแพทย์ในโรงพยาบาลพังงา</li>' +
+      '</ul>' +
+      '<div class="callout amber">' +
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>' +
+        '<div><b>ใช้แท็บ “ค้นหายาตามหัตถการ” เป็นเครื่องมือหลัก</b>พิมพ์ชื่อการผ่าตัดเพื่อดูยาแนะนำ ยาทางเลือก และช่วงเวลาให้ยาซ้ำได้ทันที</div>' +
+      '</div>';
+    return s;
+  }
+
+  function buildPrinciples(){
+    var s = el("section", "pane");
+    s.id = "pane-principles";
+    s.appendChild(el("h2","page-title","หลักการทั่วไป 6 ข้อ"));
+    s.appendChild(el("p","lede","ดัดแปลงจากกรอบ “Six S’s” ของ The Royal Children’s Hospital Melbourne (2026) ร่วมกับรายละเอียดเชิงปฏิบัติจาก Stanford Health Care (2025) และ Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust (2026)"));
+    var grid = el("div","principles");
+    PRINCIPLES.forEach(function(p){
+      var c = el("div","principle");
+      c.innerHTML = '<span class="num">'+p.n+'</span><h4>'+esc(p.t)+'</h4><p>'+esc(p.d)+'</p>';
+      grid.appendChild(c);
+    });
+    s.appendChild(grid);
+    s.appendChild(el("p","cite","อ้างอิง: The Royal Children's Hospital Melbourne (2026); Stanford Health Care (2025); Doncaster and Bassetlaw Teaching Hospitals NHS Foundation Trust (2026); Lohsiriwat et al. (2020)"));
+    return s;
+  }
+
+  function renderProcList(container, query){
+    container.innerHTML = "";
+    var q = (query||"").trim().toLowerCase();
+    var matches = PROCEDURES.filter(function(p){
+      if(!q) return true;
+      return (p.name+" "+p.group+" "+p.drug).toLowerCase().indexOf(q) !== -1;
+    });
+    var countEl = document.getElementById("proc-count");
+    if(countEl) countEl.textContent = q ? ("พบ " + matches.length + " รายการ") : (PROCEDURES.length + " หัตถการทั้งหมด");
+
+    if(matches.length === 0){
+      container.appendChild(el("p","lede","ไม่พบหัตถการที่ตรงกับคำค้นหา ลองใช้คำอื่น เช่น “ลำไส้” หรือ “หัวใจ”"));
+      return;
+    }
+
+    var lastGroup = null;
+    matches.forEach(function(p, idx){
+      if(p.group !== lastGroup && !q){
+        var gh = el("div","cite");
+        gh.style.cssText = "margin:16px 0 6px; font-weight:700; color:var(--teal-deep); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase;";
+        gh.textContent = p.group;
+        container.appendChild(gh);
+        lastGroup = p.group;
+      }
+      var d = document.createElement("details");
+      d.className = "proc";
+      if(q) d.open = true;
+      d.innerHTML =
+        '<summary><span class="name">'+esc(p.name)+'</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></summary>' +
+        '<div class="body"><dl class="kv">' +
+          '<dt>ยาแนะนำ</dt><dd><strong>'+esc(p.drug)+'</strong></dd>' +
+          '<dt>ยาทางเลือก</dt><dd>'+esc(p.alt)+'</dd>' +
+          '<dt>ให้ซ้ำทุก</dt><dd><span class="tag mono">'+esc(p.redose)+'</span></dd>' +
+        '</dl></div>';
+      container.appendChild(d);
+    });
+  }
+
+  function buildLookup(){
+    var s = el("section", "pane");
+    s.id = "pane-lookup";
+    s.appendChild(el("h2","page-title","ค้นหายาปฏิชีวนะตามชนิดการผ่าตัด"));
+    s.appendChild(el("p","lede","พิมพ์ชื่อหัตถการ (ไทยหรืออังกฤษ) เพื่อดูยาที่แนะนำ ยาทางเลือก และช่วงเวลาให้ยาซ้ำ ดัดแปลงจากแนวทางสมาคมศัลยศาสตร์เพื่อการติดเชื้อแห่งประเทศไทย (Lohsiriwat et al., 2020)"));
+
+    var searchWrap = el("div","search-wrap");
+    searchWrap.innerHTML =
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>' +
+      '<input type="text" id="proc-search" placeholder="เช่น เต้านม, ลำไส้ใหญ่, hernia, cardiac..." autocomplete="off">';
+    s.appendChild(searchWrap);
+    s.appendChild(el("p","result-count","", ));
+    var cnt = s.querySelector(".result-count"); cnt.id = "proc-count"; cnt.textContent = PROCEDURES.length + " หัตถการทั้งหมด";
+
+    var list = el("div","proc-list"); list.id = "proc-list";
+    s.appendChild(list);
+
+    var note = el("div","callout red");
+    note.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>' +
+      '<div><b>สงสัยหรือทราบว่าเป็นพาหะ/ติดเชื้อ MRSA</b>พิจารณาเพิ่มหรือเปลี่ยนเป็น Vancomycin หรือ Teicoplanin ตามดุลยพินิจแพทย์และผลตรวจทางห้องปฏิบัติการ</div>';
+    s.appendChild(note);
+
+    requestAnimationFrame(function(){
+      renderProcList(list, "");
+      var input = document.getElementById("proc-search");
+      input.addEventListener("input", function(){ renderProcList(list, input.value); });
+    });
+    return s;
+  }
+
+  function buildAllergy(){
+    var s = el("section", "pane");
+    s.id = "pane-allergy";
+    s.appendChild(el("h2","page-title","ผู้ป่วยแพ้ยากลุ่มเพนิซิลลิน"));
+    s.appendChild(el("p","lede","สำหรับผู้ป่วยที่มีประวัติแพ้ยากลุ่มเบต้าแลคแตมชนิดรุนแรง (เช่น anaphylaxis ที่ไม่แน่ใจกลไก, DRESS, SJS/TEN) — The Royal Children's Hospital Melbourne (2026)"));
+
+    var okBox = el("div","callout amber");
+    okBox.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>' +
+      '<div><b>แพ้ชนิด IgE-mediated (ลมพิษ, anaphylaxis) ที่ไม่รุนแรง</b>ยังสามารถได้รับ Cefazolin ได้อย่างปลอดภัยภายใต้การเฝ้าระวังใกล้ชิด เนื่องจาก cross-reactivity ต่ำมาก (Stanford Health Care, 2025) — ตารางด้านล่างใช้เฉพาะกรณีแพ้ชนิดรุนแรง</div>';
+    s.appendChild(okBox);
+
+    var wrap = el("div","twrap");
+    var table = el("table");
+    table.innerHTML = '<thead><tr><th>ชนิดหัตถการ</th><th>ยาทดแทน Cefazolin</th></tr></thead>';
+    var tbody = el("tbody");
+    ALLERGY.forEach(function(r){
+      var tr = el("tr");
+      tr.innerHTML = '<td class="drug">'+esc(r.proc)+'</td><td>'+esc(r.alt)+'</td>';
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    s.appendChild(wrap);
+    return s;
+  }
+
+  function buildDosing(){
+    var s = el("section", "pane");
+    s.id = "pane-dosing";
+    s.appendChild(el("h2","page-title","ขนาดยาและการให้ยาซ้ำระหว่างผ่าตัด"));
+    s.appendChild(el("p","lede","ขนาดยามาตรฐานสำหรับผู้ใหญ่ที่การทำงานของไตปกติ พิจารณาให้ยาซ้ำเมื่อผ่าตัดนานเกิน 2 เท่าของครึ่งชีวิตยา หรือเสียเลือด >1,500 มล. ในผู้ใหญ่ (Stanford Health Care, 2025; Lohsiriwat et al., 2020)"));
+
+    var wrap = el("div","twrap");
+    var table = el("table");
+    table.innerHTML = '<thead><tr><th>ยาปฏิชีวนะ</th><th>ขนาดยาก่อนผ่าตัด</th><th>ให้ซ้ำทุก</th></tr></thead>';
+    var tbody = el("tbody");
+    DOSING.forEach(function(r){
+      var tr = el("tr");
+      tr.innerHTML = '<td class="drug">'+esc(r.drug)+'</td><td>'+esc(r.dose)+'</td><td><span class="mono-note">'+esc(r.redose)+'</span></td>';
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    s.appendChild(wrap);
+
+    var note = el("p","cite");
+    note.style.marginTop = "12px";
+    note.textContent = "*ผู้ป่วยไตบกพร่อง (CrCl <30–50 mL/min) หรือฟอกไต ควรปรึกษาเภสัชกรประจำห้องผ่าตัดเพื่อปรับขนาดยา ไม่แนะนำให้ Gentamicin หรือ Vancomycin ซ้ำกรณีเสียเลือดมากระหว่างผ่าตัด (Stanford Health Care, 2025)";
+    s.appendChild(note);
+    return s;
+  }
+
+  function buildPostop(){
+    var s = el("section", "pane");
+    s.id = "pane-postop";
+    s.appendChild(el("h2","page-title","การให้ยาหลังผ่าตัด และ SSI Prevention Bundle"));
+
+    s.appendChild(el("h3","block-title",'<span class="eyebrow">หลังผ่าตัด</span>เมื่อไรควรหยุดยา'));
+    var ol = el("ol","steps");
+    ol.innerHTML =
+      '<li><b>หัตถการสะอาด/สะอาดปนเปื้อนส่วนใหญ่</b> — ไม่จำเป็นต้องให้ยาต่อหลังปิดแผล แม้มีท่อระบาย/สายสวนคาอยู่ก็ตาม</li>' +
+      '<li><b>มีข้อบ่งชี้ให้ต่อ</b> (เช่น ผ่าตัดหัวใจ, orthognathic surgery, ใส่วัสดุเทียมความเสี่ยงสูง) — ให้ต่อได้ไม่เกิน 24 ชั่วโมงหลังผ่าตัด</li>' +
+      '<li><b>หลีกเลี่ยงการให้ต่อเนื่องนานเกินจำเป็น</b> — ไม่ลด SSI เพิ่มเติม แต่เพิ่มความเสี่ยง C. difficile, ไตวายเฉียบพลัน และเชื้อดื้อยาหลายขนาน</li>';
+    s.appendChild(ol);
+    var c1 = el("p","cite"); c1.style.marginTop="10px";
+    c1.textContent = "The Royal Children's Hospital Melbourne (2026); Stanford Health Care (2025); Lohsiriwat et al. (2020)";
+    s.appendChild(c1);
+
+    s.appendChild(el("h3","block-title",'<span class="eyebrow">มาตรการเสริม</span>SSI Prevention Bundle ของไทย'));
+    s.appendChild(el("p","", "มาตรการร่วมระดับหลักฐาน Level 1 ที่สมาคมศัลยศาสตร์เพื่อการติดเชื้อแห่งประเทศไทยแนะนำให้ปฏิบัติควบคู่กับการให้ยาปฏิชีวนะ (Lohsiriwat et al., 2020):"));
+    var grid = el("div","bundle-grid");
+    BUNDLE.forEach(function(item, i){
+      var d = el("div","bundle-item");
+      d.innerHTML = '<span class="n">'+String(i+1).padStart(2,"0")+'</span><span>'+esc(item)+'</span>';
+      grid.appendChild(d);
+    });
+    s.appendChild(grid);
+    return s;
+  }
+
+  function buildRefs(){
+    var s = el("section", "pane");
+    s.id = "pane-refs";
+    s.appendChild(el("h2","page-title","เอกสารอ้างอิง (APA)"));
+    s.appendChild(el("p","lede","แนวทางฉบับนี้สังเคราะห์จากเอกสารต่อไปนี้ อ้างอิงตามรูปแบบ APA 7th edition"));
+    var wrap = el("div","refs");
+    REFERENCES.forEach(function(r){
+      var p = el("p","ref", r.t);
+      wrap.appendChild(p);
+    });
+    s.appendChild(wrap);
+    return s;
+  }
+
+  /* ======================= MOUNT ======================= */
+  var main = document.getElementById("main");
+  var builders = {
+    overview: buildOverview,
+    principles: buildPrinciples,
+    lookup: buildLookup,
+    allergy: buildAllergy,
+    dosing: buildDosing,
+    postop: buildPostop,
+    refs: buildRefs
+  };
+  var panes = {};
+  TABS.forEach(function(t){
+    var pane = builders[t.id]();
+    panes[t.id] = pane;
+    main.appendChild(pane);
+  });
+
+  var tabsNav = document.getElementById("tabs");
+  var buttons = {};
+  TABS.forEach(function(t){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.textContent = t.label;
+    b.setAttribute("role","tab");
+    b.setAttribute("aria-selected","false");
+    b.addEventListener("click", function(){ activate(t.id); });
+    tabsNav.appendChild(b);
+    buttons[t.id] = b;
+  });
+
+  function activate(id){
+    TABS.forEach(function(t){
+      var isActive = t.id === id;
+      panes[t.id].classList.toggle("active", isActive);
+      buttons[t.id].setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+    try{ localStorage.setItem("sap-pn-tab", id); }catch(e){}
+  }
+
+  var initial = "overview";
+  try{
+    var hash = (location.hash || "").replace("#","");
+    var saved = localStorage.getItem("sap-pn-tab");
+    if(hash && builders[hash]) initial = hash;
+    else if(saved && builders[saved]) initial = saved;
+  }catch(e){}
+  activate(initial);
+
+})();
+</script>
+</body>
+</html>
